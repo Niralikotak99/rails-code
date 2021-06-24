@@ -1,0 +1,78 @@
+
+<h1>Product Category Heading</h1>
+
+<select class="form-control col-sm-3" name="Dropdown" id="project_id">
+    <option value="0">Select</option>
+    <option value="1">Product Category Heading</option>
+    <option value="2">Product Category</option>
+</select>
+<br>
+<div>
+  <%= select_tag 'project_task', options_for_select(@product_category_heading.collect{ |c| c.category_name }), class:"form-control col-sm-3"%>
+</div>
+<br>
+<% @product_category_heading&.each do |product_category_heading| %>
+  <%= product_category_heading.category_name %>   
+   &nbsp;&nbsp;
+  
+  <% product_category_heading.product_categories&.each do |product_category|%>
+    
+    <%= link_to product_category.category_name, product_category_path(product_category) %> ,
+    
+  <% end %> &nbsp;&nbsp;
+  <%= link_to 'Edit', edit_product_category_heading_path(product_category_heading) %>  |
+  <%= link_to 'Destroy', product_category_heading, method: :delete, data: { confirm: 'Are you sure?' } %> 
+  <br>
+<% end %>  
+<br>
+<%= link_to 'Add Product Category Heading', new_product_category_heading_path, class:"btn btn-primary" %>
+
+<script type="text/javascript">
+  $(document).on('turbolinks:load',function() {
+    my_dropdown();
+    
+  });
+
+  function my_dropdown(){
+    $("#project_task").prop("disabled", true);
+    $("#project_id").on('change', function(){
+    var project = $(this).val();
+      if(project == '0'){
+        $("#project_task").prop("disabled", true);
+      }
+      else if(project == '1'){
+        $("#project_task").prop("disabled", false);
+        product_category_heading();
+      }
+      else if(project == '2'){
+        $("#project_task").prop("disabled", false);
+        product_category();
+      }
+      
+    }); 
+  }
+
+  function product_category_heading() {
+    $.ajax({
+      type: 'GET',
+      dataType: 'script',
+      url: "/product_category_headings",
+      data: ''
+      
+    });
+  
+}
+
+function product_category() {
+  $.ajax({
+    type: 'GET',
+    dataType: 'script',
+    url: "/product_categories",
+    data: ''
+    
+  });
+}
+
+
+
+</script>

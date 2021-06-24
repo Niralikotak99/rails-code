@@ -1,0 +1,11 @@
+<div class="nested-fields">
+	
+	<div class="fields">
+		<%= f.label :category_name %>
+		<%= f.text_field :category_name, class:"form-control col-sm-2" %>
+		<%= f.label :description %>
+		<%= f.text_field :description, class:"form-control col-sm-2" %>
+		<%= link_to_remove_association 'Remove category', f %>
+	</div>
+</div>
+

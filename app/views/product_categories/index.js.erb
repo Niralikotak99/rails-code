@@ -1,0 +1,6 @@
+$('#project_task').empty().append('<option>Select</option>');
+
+	<% @product_categories.each do |p| %>
+		$('#project_task').append('<option value=<%p.id%>><%= p.category_name%></option>');
+	<% end %>
+	

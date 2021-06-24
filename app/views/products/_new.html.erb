@@ -1,0 +1,11 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal">x</button>
+  <h4 class="modal-title" id="myModalLabel">Add Product</h4>
+</div>
+<div class="modal-body">
+  <%= form_tag :controller => 'products', :action => 'create', :method => 'post' do %>
+    <%= label_tag "Product Name" %>
+    <%= text_field_tag :pname %>
+    <%= submit_tag "Save", class:"btn btn-primary"%>
+<% end %>
+</div>

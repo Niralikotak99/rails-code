@@ -1,0 +1,6 @@
+<h1>Edit Product</h1>
+<%= form_with model: [@product_category, @product ] do |f| %>
+	<%= f.label :productName %>
+	<%= f.text_field :pname, class:"form-control col-sm-3" %><br>
+	<%= f.submit class:"btn btn-primary"%>
+<% end %>

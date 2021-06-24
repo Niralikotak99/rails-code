@@ -1,0 +1,15 @@
+$('#project_task').empty().append("<option>Select</option>");
+
+	<% @product_category_heading.each do |p| %>
+		$('#project_task').append("<option value=<%p.id%>><%= p.category_name%></option>");
+	<% end %>
+	
+$("#project_task").on('change', function(){
+	id = $(this).val();
+	$.ajax({
+		type: 'GET',
+	  dataType: 'script',
+	  url: "/product_category_headings/"+id+"/products"
+	  data: ''
+	});
+}
